@@ -22,6 +22,8 @@ Name                 Id                                   State
 ----                 --                                   -----
 student-30041007-sub 2ab86d8d-2cc2-4fcc-b871-eb27d30ed988 Enabled
 
+## What I Learned
+
 ## Task 3.2.a.	Which variable contained the most information
 Variable containing the most information is $subscription
 ## Task 3.2.b.	Which variable contained the least information
@@ -55,4 +57,4 @@ student-30041007-sub 2ab86d8d-2cc2-4fcc-b871-eb27d30ed988 MSI@50342 AzureCloud
 You type it in only once. Reduces errors with repetitive typing. You can display it, use it with or combine it other commands.  
 ## Task 6.4.b.	One real-world IT task where variables might be useful
 Updating a phone number with a client.
-## What I Learned
+
