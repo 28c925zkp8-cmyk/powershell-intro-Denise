@@ -26,3 +26,7 @@ My VM row was:
 3. Location - the Azure region. Mine is centralus.
  
 HardwareProfile.VmSize is also useful. Mine is Standard_D2as_v7, which determines CPU, memory, and cost.  ProvisioningState showed Succeeded, so the VM finished deploying.
+
+## Additional property selected
+
+I added Location to vm-report.ps1. The report is now Name, ResourceGroupName, and Location. Location is the Azure region. Mine is centralus. That matters for cost, compliance, and latency, and it stays readable because Select-Object still drops the rest of the VM object.

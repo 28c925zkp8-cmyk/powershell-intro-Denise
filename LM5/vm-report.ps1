@@ -1,1 +1,1 @@
-Get-AzVm | Select-Object Name, ResourceGroupName
+Get-AzVm | Select-Object Name, ResourceGroupName, Location
