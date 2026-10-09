@@ -1,5 +1,7 @@
 Write-Host "Azure VM Inventory Report"
 Write-Host "Generated: $(Get-Date)"
-Write-Host""
+Write-Host ""
 $vms = Get-AzVM
-$vms | Select-Object Name, ResourceGroupName, Location
+Write-Host "VM count: $($vms.Count)"
+Write-Host ""
+$vms | Select-Object Name, ResourceGroupName, Location | Sort-Object Name
