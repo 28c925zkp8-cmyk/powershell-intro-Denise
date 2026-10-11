@@ -17,7 +17,13 @@ Write-Host ""
 Write-Host "Examining each VM:"
 Write-Host ""
 
-# Loop through each VM and print its name
+# Loop through each VM and evaluate status
 foreach ($vm in $vms) {
     Write-Host "VM Name: $($vm.Name)"
+
+    if ($vm.PowerState -like "*running*") {
+        Write-Host " Status: The VM is healthy."
+    } else {
+        Write-Host " Status: The VM is not running."
+    }
 }
