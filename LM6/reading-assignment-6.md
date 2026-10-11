@@ -10,7 +10,7 @@ Chapter 8 - Objects, Properties, Methods, and More
 
 ## VM Investigation
 ### Object Type
-PSVirtualMachine (or whatever Get-Member showed)
+PSVirtualMachine 
 
 ### Useful Properties
 - PowerState
