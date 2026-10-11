@@ -28,3 +28,14 @@ I ran the command in Azure Cloud Shell because authentication inside the VM term
 
 ### Which proterty appears most important
 **PowerState** is the most important for determining whether a VM is operational right now.
+
+## Task 6: Improve teh Report with AI
+
+### a. The prompt used
+Suggest one improvement to my Azure VM status report.
+
+### b. The recommendation received
+Add a report header and clearer comments so the output is easir to read.
+
+### c. How you implemented the recommendation
+Added Write-host statements for a header and a timestamp, plus improved comments at the top of the script.
