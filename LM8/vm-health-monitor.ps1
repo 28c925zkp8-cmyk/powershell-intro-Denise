@@ -23,7 +23,11 @@ foreach ($vm in $vms) {
 
     if ($vm.PowerState -like "*running*") {
         Write-Host " Status: The VM is healthy."
-    } else {
-        Write-Host " Status: The VM is not running."
+    }
+    else {
+        Write-Host "Status: This VM needs attention."
     }
 }
+
+
+
