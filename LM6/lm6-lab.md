@@ -1,8 +1,8 @@
 # LM6 Lab - Get-AzVM Observation
 
-## a.  What information is dispayed.
+## a.  What information is dispayed
 
-Runnin 'Get-AzVM' displays information about virtual machines, including:
+Running 'Get-AzVM' displays information about virtual machines, including:
 - ResourceGroupName: POWERSHELL-INTRO-DENISE
 - Name: PI-VM-Denise
 - Location: centralus
@@ -22,7 +22,7 @@ I ran the command in Azure Cloud Shell because authentication inside the VM term
 ## Task 2: VM Status Information
 
 ### Three useful properties
-1. **PowerSttate** - Shows teh current power state (running, deallocated, stopped.)
+1. **PowerState** - Shows the current power state (running, deallocated, stopped.)
 2. **ProvisioningState** - Indicates if the VM was successfully created/configured.
 3. **StatusCode** or **DisplayStatus** - Provides a more detailed operational status message.
 
