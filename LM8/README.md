@@ -1,5 +1,5 @@
-# Project Overvier
-Automates health and status reporting for Azure VMs sor administrators do ot have to check the portal manually.
+# Project Overvierw
+Automates health and status reporting for Azure VMs so administrators do not have to check the portal manually.
 
 # Features
 - Connects to Azure and retrieves VM status
@@ -17,4 +17,4 @@ Automates health and status reporting for Azure VMs sor administrators do ot hav
 - Write-Host with -ForegroundColor
 
 # Lessons Learned
-PowerShell objects, the pipeline, and status sub-properties (Statuses collection) are essential for Azure resoource reporting.
+PowerShell objects, the pipeline, and status sub-properties (Statuses collection) are essential for Azure resource reporting.

@@ -1,23 +1,24 @@
 # LM8 Capstone - Azure VM Health Monitoring Report
 # Developed in VS Code
 
-# Requirement 1 -Report Heading
+# Requirement 1 - Generate Report Heading
 Write-Host "Azure VM Health Monitoring Report" -ForegroundColor Cyan
-Write-Host "Generated: $(Get-Date)" -ForegroundColor Cyan
+Write-Host "Generated on: $(Get-Date -Format 'MM/dd/yyyy HH:mm:ss')" -ForegroundColor Cyan
+Write-Host "========================================================" -ForegroundColor Cyan
 Write-Host ""
 
-# Requirement 2 and 3 - Retrieve VMs and use a Variable
-$targetLocation = "Centralus"
+# Requirement 2 and 3 - Retrieve VMs Informatin and Use a Variable
+# Connect first if needed: Connect-AzAccount
 
-$allVMs = Get-AzVm | Get-AzVM -Status
+$allVMs = Get-AzVm -Status
 
-# Requirement 5 - Filter by location
-$vms = $allVMs | Where-Object { $_.Location -eq $targetLocation }
+# Requirement 4 - Use Select-Object to shoose specific properties
+# Requirement 8 - Properties included (ResourceGroupName, TimeCreated, ProvisoiningState)
+$selectedVMs = $allVMs | Select-Object Name, Location, ResourceGroupName, ProvisioningState, TimeCreated, 
 
-if (-not $vms) {
-    Write-Host "No VMs found in the location: $targetLocation" -ForegroundColor Red
-    return
-}
+
+# Requirement 5 Use Filtering with Where-Object
+$filteredVMs = $allVMs | Where-Object { $_.Location -eq "centralus" }
 
 # Requirement 9 - Counters for the summary
  
@@ -25,19 +26,20 @@ $healthyCount = 0
 $attentionCount = 0
 $totalCount = $vms.Count
 
-# Requirement 6 - Foreeach Loop
-foreach ($vm in $vms) {
-    #Requirement 4 - Select-Object stype properties (also used directly)
-    $name         = $vm.Name
-    $location     = $vm.Location
-    $resourceGroup= $vm.ResourceGroupName
-    $provisioning = $vm.ProvisioningState
-    $timeCreated  = $vm.TimeCreated
+Write-Host "Evaluating $totalCount VM9s) in the filtered results..." -ForegroundColor White
+Write-Host ""
 
-    # PowerState comes from Statuses collection
-    $powerState = ($vm.Sttuses | Where-Object { $_.Code -like "PowerState*" }).DisplayStatus
-    
-    # Requirement 7 and 9 - Logic and Color
+# Requirement 6 and 7 - Use a FOREACH loop and Logic (IF) based on PowerState
+foreach ($vm in $filteredVMs) {
+
+    # Display basic infor
+    Write-Host "VM Name : $($vm.Name)" -ForegroundColor White
+    Write-Host "Location: $($vm.Location)"
+    Write-Host "Resource Group: $($vm.ResourceGroupName)"
+    Write-Host "Provisioning State: $($vm.ProvisioningState)"
+    Write-Host "Time Created: $($vm.TimeCreated)"
+
+    # Requirement 9 - Color-coded status messages
     if ($vm.PowerState -eq "VM running") {
         Write-Host "$($vm.Name) is Healthy" -ForegroundColor Green
         $healthyCount++
@@ -46,11 +48,13 @@ foreach ($vm in $vms) {
         Write-Host "$($vm.Name) Needs Attention" -ForegroundColor Yellow
         $attentionCount++
     }
+    Write-Host "----------------------------------------" -ForegroundColor White
 }
 
-# Requirement 9 - AI Enhancement Colors and Summary
+# Requirement 9 - AI Enhancement Colors and Summary of VMs evaluated
 Write-Host ""
 Write-Host "========== SUMMARY ==========" -ForegroundColor Cyan
-Write-Host "Total VMs evaluated  : $($filteredVMs.Count)"
+Write-Host "Total VMs evaluated  : $totalCount"
 Write-Host "Healthy VMs          : $healthyCount" -ForegroundColor Green
 Write-Host "VMs needing attention: $attentionCount" -ForegroundColor Yellow
+Write-Host "=============================" -ForegroundColor Cyan

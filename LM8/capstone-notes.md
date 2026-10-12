@@ -13,3 +13,4 @@ Added headers, blank lines, and comments to make the report output cleaner and t
 - **Prompt used**: Review my PowerShell VM healt monitoring script and suggest one improvement.
 - **Suggestion received**: Add a count of healthy vs. needs-attention VMs at the end of the report so administrators get a quick high-level summary.
 - **Decision**: This is a good idea to implement. It improves the usefulness of the report without making the script mor complicated, and it directly supports the goal of helping admins quickly identify issues.
+
