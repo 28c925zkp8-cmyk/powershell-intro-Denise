@@ -20,17 +20,26 @@ Write-Host "=== VM Health Evaluation ==="
 Write-Host ""
 
 # Evaluate VM health
+$healthy = 0
+$needsAttention = 0
+
 foreach ($vm in $vms) {
     Write-Host "VM Name: $($vm.Name)"
 
     if ($vm.PowerState -like "*running*") {
-        Write-Host " Status: The VM is healthy."
-    }
+        $healthy++
+        Write-Host " Status: The VM is healthy." -ForegroundColor Green    }
     else {
-        Write-Host "Status: This VM needs attention."
+        $needsAttention++
+        Write-Host "Status: This VM needs attention." -Foreground Color Yellow
     }
     Write-Host ""
 }
+
+Write-Host "=== Summary ==="
+Write-Host "Healthy VMs: $healthy"
+Write-Host "Needs Attention: $needsAttention"
+Write-Host ""
 Write-Host "=== End of Report ==="
 
 
