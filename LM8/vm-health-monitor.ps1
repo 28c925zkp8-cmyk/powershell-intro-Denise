@@ -14,11 +14,11 @@ $allVMs = Get-AzVm -Status
 
 # Requirement 4 - Use Select-Object to shoose specific properties
 # Requirement 8 - Properties included (ResourceGroupName, TimeCreated, ProvisoiningState)
-$selectedVMs = $allVMs | Select-Object Name, Location, ResourceGroupName, ProvisioningState, TimeCreated, 
+$selectedVMs = $allVMs | Select-Object Name, Location, ResourceGroupName, ProvisioningState, TimeCreated
 
 
 # Requirement 5 Use Filtering with Where-Object
-$filteredVMs = $allVMs | Where-Object { $_.Location -eq "centralus" }
+$filteredVMs = $selectedVMs | Where-Object { $_.Location -eq "centralus" }
 
 # Requirement 9 - Counters for the summary
  
