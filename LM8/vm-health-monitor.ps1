@@ -7,37 +7,35 @@ Write-Host "Generated on: $(Get-Date -Format 'MM/dd/yyyy HH:mm:ss')" -Foreground
 Write-Host "========================================================" -ForegroundColor Cyan
 Write-Host ""
 
-# Requirement 2 and 3 - Retrieve VMs Informatin and Use a Variable
+# Requirement 2 and 3 - Retrieve VMs Information and Use a Variable
 # Connect first if needed: Connect-AzAccount
 
 $allVMs = Get-AzVm -Status
 
-# Requirement 4 - Use Select-Object to shoose specific properties
-# Requirement 8 - Properties included (ResourceGroupName, TimeCreated, ProvisoiningState)
-$selectedVMs = $allVMs | Select-Object Name, Location, ResourceGroupName, ProvisioningState, TimeCreated
+# Requirement 4 - Use Select-Object to choose specific properties
+# Requirement 8 - Properties included (ResourceGroupName, TimeCreated, ProvisioningState)
+#Note: PowerState is required for the health check below
+$selectedVMs = $allVMs | Select-Object Name, Location, ResourceGroupName, ProvisioningState, TimeCreated, PowerState
 
-
-# Requirement 5 Use Filtering with Where-Object
+# Requirement 5 - Use Filtering with Where-Object
 $filteredVMs = $selectedVMs | Where-Object { $_.Location -eq "centralus" }
 
 # Requirement 9 - Counters for the summary
- 
 $healthyCount = 0
 $attentionCount = 0
-$totalCount = $vms.Count
+$totalCount = $filteredVMs.Count
 
-Write-Host "Evaluating $totalCount VM9s) in the filtered results..." -ForegroundColor White
+Write-Host "Evaluating $totalCount VMs in the filtered results..." -ForegroundColor White
 Write-Host ""
 
 # Requirement 6 and 7 - Use a FOREACH loop and Logic (IF) based on PowerState
 foreach ($vm in $filteredVMs) {
-
-    # Display basic infor
-    Write-Host "VM Name : $($vm.Name)" -ForegroundColor White
-    Write-Host "Location: $($vm.Location)"
-    Write-Host "Resource Group: $($vm.ResourceGroupName)"
+    # Display basic information
+    Write-Host "VM Name           : $($vm.Name)" -ForegroundColor White
+    Write-Host "Location          : $($vm.Location)"
+    Write-Host "Resource Group    : $($vm.ResourceGroupName)"
     Write-Host "Provisioning State: $($vm.ProvisioningState)"
-    Write-Host "Time Created: $($vm.TimeCreated)"
+    Write-Host "Time Created      : $($vm.TimeCreated)"
 
     # Requirement 9 - Color-coded status messages
     if ($vm.PowerState -eq "VM running") {
