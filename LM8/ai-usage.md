@@ -1,6 +1,6 @@
 # AI Usage
 
-Promp Used:
+Prompt Used:
 Help me add green/yellow coloring and summary count to my Azure VM health script and check script for errors.
 
 AI Response Summary:
